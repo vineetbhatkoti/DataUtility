@@ -1,0 +1,33 @@
+#Utility for extracting data from the API and saving it to a CSV file
+import urllib2
+import json
+import csv
+
+# Method for writing the data to the CSV file
+def csv_writer(data, path):
+    with open(path, "a") as csv_file:
+        writer = csv.writer(csv_file, delimiter = ',')
+        print "Writing the data ------------>>"
+        writer.writerow(data)
+
+#loop for executing the API number of times. For example a API from weather undergraound exposes weather data according to Zip Code.
+#Thus if need the data for zip code from 67335 to 99950 then we run the loop for that many times. Each time loop fetches the JSON from the API corresponding to the ZipCode.
+
+for x in range(67335,99950):
+    try:
+        f = urllib2.urlopen('http://api.wunderground.com/api/0963760b8c890b69/conditions/q/'+str(x)+'.json')
+        json_string = f.read()
+        parsed_json = json.loads(json_string)
+        location = parsed_json['current_observation']['display_location']['city']
+        Zip = parsed_json['current_observation']['display_location']['zip']
+        temp_f = parsed_json['current_observation']['temp_f']
+        data=[Zip,location,temp_f];
+        csv_writer(data,"output.csv")
+    except:
+        print "unable to fetch the details for %s" %(x)
+    
+
+
+
+
+
