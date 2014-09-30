@@ -15,7 +15,7 @@ def csv_writer(data, path):
 
 for x in range(67335,99950):
     try:
-        f = urllib2.urlopen('http://api.wunderground.com/api/0963760b8c890b69/conditions/q/'+str(x)+'.json')
+        f = urllib2.urlopen('http://api.wunderground.com/api/key/conditions/q/'+str(x)+'.json')
         json_string = f.read()
         parsed_json = json.loads(json_string)
         location = parsed_json['current_observation']['display_location']['city']
