@@ -8,7 +8,7 @@ We see lot of websites exposing their data for analysis. Thus, this python utili
 
 
 How to use this utility
-=======================
++++++++++++++++++++++++
 
 
 To use this utility you need a API url, which needs to be given to the urlopen() as argument. A CSV file by the name "output.csv" would be generated. Also, the program is customizable to extract information from the JSON. 
